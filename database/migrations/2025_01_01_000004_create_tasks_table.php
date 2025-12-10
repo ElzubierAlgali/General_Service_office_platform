@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('organization_id');
             $table->string('name');
-            $table->string('code')->unique('unique_org_task_code'); // e.g., 'verify_documents'
+            $table->string('code'); // e.g., 'verify_documents'
             $table->text('description')->nullable();
             $table->integer('default_order')->default(0); // relative ordering in workflow
             $table->boolean('required')->default(true);
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
-            $table->unique(['organization_id', 'code']);
+            $table->unique(['organization_id', 'code']); // Unique code per organization
             $table->index('organization_id');
         });
     }

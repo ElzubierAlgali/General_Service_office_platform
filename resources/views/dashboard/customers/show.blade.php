@@ -13,9 +13,11 @@
         </nav>
     </div>
     <div>
+        @permission('edit-customers')
         <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-primary">
             <i class="fas fa-edit"></i> تعديل
         </a>
+        @endpermission
         <a href="{{ route('customers.index') }}" class="btn btn-outline-secondary">
             <i class="fas fa-arrow-right"></i> العودة للقائمة
         </a>

@@ -12,9 +12,11 @@
         </nav>
     </div>
     <div>
+        @permission('create-customers')
         <a href="{{ route('customers.create') }}" class="btn btn-primary">
             <i class="fas fa-plus"></i> إضافة عميل
         </a>
+        @endpermission
     </div>
 </div>
 
@@ -100,12 +102,17 @@
                         </td>
                         <td>
                             <div class="d-flex gap-2">
+                                @permission('view-customers')
                                 <a href="{{ route('customers.show', $customer->id) }}" class="btn btn-sm btn-outline-info" title="عرض">
                                     <i class="fas fa-eye"></i>
                                 </a>
+                                @endpermission
+                                @permission('edit-customers')
                                 <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-sm btn-outline-primary" title="تعديل">
                                     <i class="fas fa-edit"></i>
                                 </a>
+                                @endpermission
+                                @permission('delete-customers')
                                 <form action="{{ route('customers.destroy', $customer->id) }}" method="POST" class="d-inline" onsubmit="return confirm('هل أنت متأكد من حذف هذا العميل؟');">
                                     @csrf
                                     @method('DELETE')
@@ -113,6 +120,7 @@
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
+                                @endpermission
                             </div>
                         </td>
                     </tr>

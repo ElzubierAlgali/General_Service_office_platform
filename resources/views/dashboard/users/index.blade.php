@@ -12,9 +12,11 @@
         </nav>
     </div>
     <div>
+        @permission('create-users')
         <a href="{{ route('users.create') }}" class="btn btn-primary">
             <i class="fas fa-plus"></i> إضافة مستخدم
         </a>
+        @endpermission
     </div>
 </div>
 
@@ -131,12 +133,17 @@
                         <td>{{ $user->created_at->format('Y-m-d') }}</td>
                         <td>
                             <div class="d-flex gap-2">
+                                @permission('view-users')
                                 <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-info" title="عرض">
                                     <i class="fas fa-eye"></i>
                                 </a>
+                                @endpermission
+                                @permission('edit-users')
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-primary" title="تعديل">
                                     <i class="fas fa-edit"></i>
                                 </a>
+                                @endpermission
+                                @permission('delete-users')
                                 @if($user->id !== auth()->id())
                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline" onsubmit="return confirm('هل أنت متأكد من حذف هذا المستخدم؟');">
                                     @csrf
@@ -146,6 +153,7 @@
                                     </button>
                                 </form>
                                 @endif
+                                @endpermission
                             </div>
                         </td>
                     </tr>

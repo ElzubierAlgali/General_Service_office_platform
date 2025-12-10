@@ -14,6 +14,8 @@ class CustomerController extends Controller
 {
     public function index(Request $request): View
     {
+        $this->authorize('view-customers');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $query = Customer::with('organization');
@@ -39,11 +41,15 @@ class CustomerController extends Controller
 
     public function create(): View
     {
+        $this->authorize('create-customers');
+        
         return view('dashboard.customers.create');
     }
 
     public function store(StoreCustomerRequest $request): RedirectResponse
     {
+        $this->authorize('create-customers');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         Customer::create([
@@ -65,17 +71,23 @@ class CustomerController extends Controller
 
     public function show(Customer $customer): View
     {
+        $this->authorize('view-customers');
+        
         $customer->load('transactions', 'invoices', 'organization');
         return view('dashboard.customers.show', compact('customer'));
     }
 
     public function edit(Customer $customer): View
     {
+        $this->authorize('edit-customers');
+        
         return view('dashboard.customers.edit', compact('customer'));
     }
 
     public function update(UpdateCustomerRequest $request, Customer $customer): RedirectResponse
     {
+        $this->authorize('edit-customers');
+        
         $customer->update($request->validated());
 
         return redirect()->route('customers.index')
@@ -84,6 +96,8 @@ class CustomerController extends Controller
 
     public function destroy(Customer $customer): RedirectResponse
     {
+        $this->authorize('delete-customers');
+        
         if ($customer->transactions()->count() > 0) {
             return redirect()->route('customers.index')
                 ->with('error', 'لا يمكن حذف العميل لأنه مرتبط بمعاملات.');

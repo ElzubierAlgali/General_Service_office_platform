@@ -12,9 +12,11 @@
         </nav>
     </div>
     <div>
+        @permission('create-services')
         <a href="{{ route('services.create') }}" class="btn btn-primary">
             <i class="fas fa-plus"></i> إضافة خدمة
         </a>
+        @endpermission
     </div>
 </div>
 
@@ -90,12 +92,17 @@
                         <td><span class="badge bg-info">{{ $service->transactions_count ?? $service->transactions()->count() }}</span></td>
                         <td>
                             <div class="d-flex gap-2">
+                                @permission('view-services')
                                 <a href="{{ route('services.show', $service->id) }}" class="btn btn-sm btn-outline-info" title="عرض">
                                     <i class="fas fa-eye"></i>
                                 </a>
+                                @endpermission
+                                @permission('edit-services')
                                 <a href="{{ route('services.edit', $service->id) }}" class="btn btn-sm btn-outline-primary" title="تعديل">
                                     <i class="fas fa-edit"></i>
                                 </a>
+                                @endpermission
+                                @permission('delete-services')
                                 <form action="{{ route('services.destroy', $service->id) }}" method="POST" class="d-inline" onsubmit="return confirm('هل أنت متأكد من حذف هذه الخدمة؟');">
                                     @csrf
                                     @method('DELETE')
@@ -103,6 +110,7 @@
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
+                                @endpermission
                             </div>
                         </td>
                     </tr>

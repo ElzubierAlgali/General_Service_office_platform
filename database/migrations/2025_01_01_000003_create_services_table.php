@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('organization_id');
             $table->string('name');
-            $table->string('code')->unique('unique_org_code'); // e.g., 'business_license', scoped to org
+            $table->string('code'); // e.g., 'business_license', scoped to org
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->default(0);
             $table->integer('estimated_duration_days')->nullable(); // SLA / expected turnaround
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
-            $table->unique(['organization_id', 'code']);
+            $table->unique(['organization_id', 'code']); // Unique code per organization
             $table->index('organization_id');
             $table->index('active');
         });

@@ -15,6 +15,8 @@ class ServiceController extends Controller
 {
     public function index(Request $request): View
     {
+        $this->authorize('view-services');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $query = Service::with('organization');
@@ -37,6 +39,8 @@ class ServiceController extends Controller
 
     public function create(): View
     {
+        $this->authorize('create-services');
+        
         $organizationId = TenantManager::getOrganizationId();
         $tasks = Task::when($organizationId, function ($q) use ($organizationId) {
             $q->where('organization_id', $organizationId);
@@ -47,6 +51,8 @@ class ServiceController extends Controller
 
     public function store(StoreServiceRequest $request): RedirectResponse
     {
+        $this->authorize('create-services');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $service = Service::create([
@@ -65,12 +71,16 @@ class ServiceController extends Controller
 
     public function show(Service $service): View
     {
+        $this->authorize('view-services');
+        
         $service->load('transactions', 'organization');
         return view('dashboard.services.show', compact('service'));
     }
 
     public function edit(Service $service): View
     {
+        $this->authorize('edit-services');
+        
         $organizationId = TenantManager::getOrganizationId();
         $tasks = Task::when($organizationId, function ($q) use ($organizationId) {
             $q->where('organization_id', $organizationId);
@@ -81,6 +91,8 @@ class ServiceController extends Controller
 
     public function update(UpdateServiceRequest $request, Service $service): RedirectResponse
     {
+        $this->authorize('edit-services');
+        
         $service->update($request->validated());
         $service->active = $request->has('active');
         $service->save();
@@ -91,6 +103,8 @@ class ServiceController extends Controller
 
     public function destroy(Service $service): RedirectResponse
     {
+        $this->authorize('delete-services');
+        
         if ($service->transactions()->count() > 0) {
             return redirect()->route('services.index')
                 ->with('error', 'لا يمكن حذف الخدمة لأنها مرتبطة بمعاملات.');

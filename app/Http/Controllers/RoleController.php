@@ -19,6 +19,8 @@ class RoleController extends Controller
      */
     public function index(Request $request): View
     {
+        $this->authorize('view-roles');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $query = Role::withCount('users')->with('permissions');
@@ -50,6 +52,8 @@ class RoleController extends Controller
      */
     public function create(): View
     {
+        $this->authorize('create-roles');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $permissions = Permission::when($organizationId, function ($q) use ($organizationId) {
@@ -64,6 +68,8 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request): RedirectResponse
     {
+        $this->authorize('create-roles');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $role = Role::create([
@@ -87,6 +93,8 @@ class RoleController extends Controller
      */
     public function show(Role $role): View
     {
+        $this->authorize('view-roles');
+        
         $role->load('permissions', 'users');
         return view('dashboard.roles.show', compact('role'));
     }
@@ -96,6 +104,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role): View
     {
+        $this->authorize('edit-roles');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $permissions = Permission::when($organizationId, function ($q) use ($organizationId) {
@@ -112,6 +122,8 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role): RedirectResponse
     {
+        $this->authorize('edit-roles');
+        
         $role->name = $request->name;
         $role->display_name = $request->display_name;
         $role->description = $request->description;
@@ -133,6 +145,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role): RedirectResponse
     {
+        $this->authorize('delete-roles');
+        
         // Prevent deleting role if it has users
         if ($role->users()->count() > 0) {
             return redirect()->route('roles.index')
@@ -150,6 +164,8 @@ class RoleController extends Controller
      */
     public function clone(Role $role): RedirectResponse
     {
+        $this->authorize('create-roles');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $newRole = $role->replicate();

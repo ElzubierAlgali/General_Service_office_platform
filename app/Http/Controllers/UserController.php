@@ -20,6 +20,8 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
+        $this->authorize('view-users');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $query = User::with('roles', 'organization');
@@ -42,6 +44,8 @@ class UserController extends Controller
      */
     public function create(): View
     {
+        $this->authorize('create-users');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $roles = Role::when($organizationId, function ($q) use ($organizationId) {
@@ -60,6 +64,8 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
+        $this->authorize('create-users');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $user = User::create([
@@ -87,6 +93,8 @@ class UserController extends Controller
      */
     public function show(User $user): View
     {
+        $this->authorize('view-users');
+        
         $user->load('roles', 'organization');
         return view('dashboard.users.show', compact('user'));
     }
@@ -96,6 +104,8 @@ class UserController extends Controller
      */
     public function edit(User $user): View
     {
+        $this->authorize('edit-users');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $roles = Role::when($organizationId, function ($q) use ($organizationId) {
@@ -116,6 +126,8 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
+        $this->authorize('edit-users');
+        
         $user->name = $request->name;
         $user->email = $request->email;
         
@@ -149,6 +161,8 @@ class UserController extends Controller
      */
     public function destroy(User $user): RedirectResponse
     {
+        $this->authorize('delete-users');
+        
         // Prevent deleting yourself
         if ($user->id === auth()->id()) {
             return redirect()->route('users.index')

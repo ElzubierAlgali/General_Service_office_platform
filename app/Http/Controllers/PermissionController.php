@@ -18,6 +18,8 @@ class PermissionController extends Controller
      */
     public function index(Request $request): View
     {
+        $this->authorize('view-permissions');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         $query = Permission::withCount('roles');
@@ -52,6 +54,8 @@ class PermissionController extends Controller
      */
     public function create(): View
     {
+        $this->authorize('create-permissions');
+        
         return view('dashboard.permissions.create');
     }
 
@@ -60,6 +64,8 @@ class PermissionController extends Controller
      */
     public function store(StorePermissionRequest $request): RedirectResponse
     {
+        $this->authorize('create-permissions');
+        
         $organizationId = TenantManager::getOrganizationId();
         
         Permission::create([
@@ -78,6 +84,8 @@ class PermissionController extends Controller
      */
     public function show(Permission $permission): View
     {
+        $this->authorize('view-permissions');
+        
         $permission->load('roles');
         return view('dashboard.permissions.show', compact('permission'));
     }
@@ -87,6 +95,8 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission): View
     {
+        $this->authorize('edit-permissions');
+        
         $permission->load('roles');
         return view('dashboard.permissions.edit', compact('permission'));
     }
@@ -96,6 +106,8 @@ class PermissionController extends Controller
      */
     public function update(UpdatePermissionRequest $request, Permission $permission): RedirectResponse
     {
+        $this->authorize('edit-permissions');
+        
         $permission->name = $request->name;
         $permission->display_name = $request->display_name;
         $permission->description = $request->description;
@@ -110,6 +122,8 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission): RedirectResponse
     {
+        $this->authorize('delete-permissions');
+        
         // Prevent deleting permission if it's attached to roles
         if ($permission->roles()->count() > 0) {
             return redirect()->route('permissions.index')
