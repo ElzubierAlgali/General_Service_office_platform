@@ -1,0 +1,137 @@
+    <header class="app-header">
+      <div class="app-header-inner">
+        <button class="app-toggler" type="button" aria-label="app toggler">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="app-header-start d-none d-md-flex">
+          <form class="d-flex align-items-center h-100 w-lg-250px w-xxl-300px position-relative" action="#">
+            <button type="button" class="btn btn-sm border-0 position-absolute start-0 ms-3 p-0">
+              <i class="fi fi-rr-search"></i>
+            </button>
+            <input type="text" class="form-control rounded-5 ps-5" placeholder="بحث..." data-bs-toggle="modal" data-bs-target="#searchResultsModal">
+          </form>
+          <ul class="navbar-nav gap-4 flex-row d-none d-xxl-flex">
+
+          </ul>
+        </div>
+        <div class="app-header-end">
+          <div class="px-lg-3 px-2 ps-0 d-flex align-items-center">
+            <div class="dropdown">
+              <button class="btn btn-icon btn-action-gray rounded-circle waves-effect waves-light position-relative" id="ld-theme" type="button" data-bs-auto-close="outside" aria-expanded="false" data-bs-toggle="dropdown">
+                <i class="fi fi-rr-brightness scale-1x theme-icon-active"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <button type="button" class="dropdown-item d-flex gap-2 align-items-center" data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fi fi-rr-brightness scale-1x" data-theme="light"></i> الوضع اللايت
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item d-flex gap-2 align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fi fi-rr-moon scale-1x" data-theme="dark"></i> الوضع الداكن
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item d-flex gap-2 align-items-center" data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fi fi-br-circle-half-stroke scale-1x" data-theme="auto"></i> تلقائي
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="vr my-3"></div>
+          <div class="d-flex align-items-center gap-sm-2 gap-0 px-lg-4 px-sm-2 px-1">
+            <a href="javascript:void(0);" class="btn btn-icon btn-action-gray rounded-circle waves-effect waves-light position-relative">
+              <i class="fi fi-rr-envelope"></i>
+              <span class="position-absolute top-0 end-0 p-1 mt-1 me-1 bg-danger border border-3 border-light rounded-circle">
+                <span class="visually-hidden">New alerts</span>
+              </span>
+            </a>
+            <div class="dropdown text-end">
+              <button type="button" class="btn btn-icon btn-action-gray rounded-circle waves-effect waves-light" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="true">
+                <i class="fi fi-rr-bell"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-lg-end p-0 w-300px mt-2">
+                <div class="px-3 py-3 border-bottom d-flex justify-content-between align-items-center">
+                  <h6 class="mb-0">الإشعارات <span class="badge badge-sm rounded-pill bg-primary ms-2">0</span>
+                  </h6>
+                  <i class="bi bi-x-lg cursor-pointer"></i>
+                </div>
+                <div class="p-2" style="height: 200px;" data-simplebar>
+                  <div class="text-center text-muted py-5">
+                    <i class="fi fi-rr-bell fa-2x mb-2"></i>
+                    <p class="mb-0">لا توجد إشعارات جديدة</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="{{ route('home') }}" class="btn btn-icon btn-action-gray rounded-circle waves-effect waves-light">
+              <i class="fi fi-rr-home"></i>
+            </a>
+          </div>
+          <div class="vr my-3"></div>
+          <div class="dropdown text-end ms-sm-3 ms-2 ms-lg-4">
+            <a href="#" class="d-flex align-items-center py-2" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="true">
+              <div class="text-end me-2 d-none d-lg-inline-block">
+                <div class="fw-bold text-dark">{{ auth()->user()->name }}</div>
+                <small class="text-body d-block lh-sm">
+                  <i class="fi fi-rr-angle-down text-3xs me-1"></i> {{ auth()->user()->position ?? auth()->user()->roles->first()->display_name ?? '' }}
+                </small>
+              </div>
+              <div class="avatar avatar-sm rounded-circle avatar-status-success">
+                @if(auth()->user()->photo)
+                <img src="{{ asset('storage/' . auth()->user()->photo) }}" alt="{{ auth()->user()->name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                @else
+                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 100%; height: 100%; font-size: 0.75rem;">
+                  {{ auth()->user()->initials }}
+                </div>
+                @endif
+              </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end w-225px mt-1">
+              <li class="d-flex align-items-center p-2">
+                <div class="avatar avatar-sm rounded-circle">
+                  @if(auth()->user()->photo)
+                  <img src="{{ asset('storage/' . auth()->user()->photo) }}" alt="{{ auth()->user()->name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                  @else
+                  <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 100%; height: 100%; font-size: 0.75rem;">
+                    {{ auth()->user()->initials }}
+                  </div>
+                  @endif
+                </div>
+                <div class="ms-2">
+                  <div class="fw-bold text-dark">{{ auth()->user()->name }} </div>
+                  <small class="text-body d-block lh-sm">{{ auth()->user()->email }}</small>
+                </div>
+              </li>
+              <li>
+                <div class="dropdown-divider my-1"></div>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="{{ route('profile.index') }}">
+                  <i class="fi fi-rr-user scale-1x"></i> الملف الشخصي
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="{{ route('profile.index') }}#security">
+                  <i class="fi fi-rr-settings scale-1x"></i> إعدادات الحساب
+                </a>
+              </li>
+              <li>
+                <div class="dropdown-divider my-1"></div>
+              </li>
+              <li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="dropdown-item d-flex align-items-center gap-2 text-danger" type="submit"><i class="fi fi-sr-exit scale-1x">
+                        </i> تسجيل الخروج
+                    </button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>

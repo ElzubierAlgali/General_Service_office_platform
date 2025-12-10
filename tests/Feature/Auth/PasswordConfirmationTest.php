@@ -4,7 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Inertia\Testing\AssertableInertia as Assert;
+// Converted from Inertia assertions to Blade view assertions
 use Tests\TestCase;
 
 class PasswordConfirmationTest extends TestCase
