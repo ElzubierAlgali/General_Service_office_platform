@@ -72,11 +72,13 @@ class User extends Authenticatable implements LaratrustUser
             Config::get('laratrust.tables.role_user'),
             Config::get('laratrust.foreign_keys.user'),
             Config::get('laratrust.foreign_keys.role')
-        )->withPivot('organization_id')->withTimestamps();
+        );
 
+        $pivotColumns = ['organization_id'];
         if (Config::get('laratrust.teams.enabled')) {
-            $roles->withPivot(Config::get('laratrust.foreign_keys.team'));
+            $pivotColumns[] = Config::get('laratrust.foreign_keys.team');
         }
+        $roles->withPivot($pivotColumns)->withTimestamps();
 
         return $roles;
     }
