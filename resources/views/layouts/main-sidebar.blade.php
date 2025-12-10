@@ -1,11 +1,11 @@
  <aside class="app-menubar" id="appMenubar">
       <div class="app-navbar-brand">
-        <a class="navbar-brand-logo" href="index.html">
+        <a class="navbar-brand-logo" href="{{ route('dashboard') }}">
         </a>
-        <a class="navbar-brand-mini visible-light" href="{{ route('home') }}">
+        <a class="navbar-brand-mini visible-light" href="{{ route('dashboard') }}">
           <img width="150" src="{{ asset('assets/images/brand/logo.png') }}" alt="SIDQA Logo">
         </a>
-        <a class="navbar-brand-mini visible-dark" href="{{ route('home') }}">
+        <a class="navbar-brand-mini visible-dark" href="{{ route('dashboard') }}">
           <img width="150" src="{{ asset('assets/images/brand/logo.png') }}" alt="SIDQA Logo">
         </a>
       </div>
@@ -27,6 +27,11 @@
               <span class="menu-label">لوحة التحكم</span>
             </a>
             <ul class="menu-inner">
+              <li class="menu-item">
+                <a class="menu-link" href="{{ route('dashboard') }}">
+                  <span class="menu-label">لوحة التحكم الرئيسية</span>
+                </a>
+              </li>
               <li class="menu-item">
                 <a class="menu-link" href="{{ route('home') }}">
                   <span class="menu-label">الرئيسية</span>
@@ -214,6 +219,59 @@
             </ul>
           </li>
           @endpermission
+          <!-- Core Business Management -->
+          @permission('View Customers|View Services')
+          <li class="menu-item menu-arrow">
+            <a class="menu-link" href="javascript:void(0);" role="button">
+              <i class="fas fa-building"></i>
+              <span class="menu-label">إدارة الأعمال الأساسية</span>
+            </a>
+            <ul class="menu-inner">
+              @permission('View Customers')
+              <li class="menu-item menu-arrow">
+                <a class="menu-link" href="javascript:void(0);">
+                  <span class="menu-label">إدارة العملاء</span>
+                </a>
+                <ul class="menu-inner">
+                  <li class="menu-item">
+                    <a class="menu-link" href="{{ route('customers.index') }}">
+                      <span class="menu-label">قائمة العملاء</span>
+                    </a>
+                  </li>
+                  @permission('Create Customers')
+                  <li class="menu-item">
+                    <a class="menu-link" href="{{ route('customers.create') }}">
+                      <span class="menu-label">إضافة عميل</span>
+                    </a>
+                  </li>
+                  @endpermission
+                </ul>
+              </li>
+              @endpermission
+              @permission('View Services')
+              <li class="menu-item menu-arrow">
+                <a class="menu-link" href="javascript:void(0);">
+                  <span class="menu-label">إدارة الخدمات</span>
+                </a>
+                <ul class="menu-inner">
+                  <li class="menu-item">
+                    <a class="menu-link" href="{{ route('services.index') }}">
+                      <span class="menu-label">قائمة الخدمات</span>
+                    </a>
+                  </li>
+                  @permission('Create Services')
+                  <li class="menu-item">
+                    <a class="menu-link" href="{{ route('services.create') }}">
+                      <span class="menu-label">إضافة خدمة</span>
+                    </a>
+                  </li>
+                  @endpermission
+                </ul>
+              </li>
+              @endpermission
+            </ul>
+          </li>
+          @endpermission
           @permission('Manage Users')
           <li class="menu-item menu-arrow">
             <a class="menu-link" href="javascript:void(0);" role="button">
@@ -251,13 +309,34 @@
                     @permission('Create Roles')
                     <li class="menu-item">
                         <a class="menu-link" href="{{ route('roles.create') }}">
-                        <span class="menu-label">إضافة الصلاحيات</span>
+                        <span class="menu-label">إضافة صلاحية</span>
                         </a>
                     </li>
                     @endpermission
                     <li class="menu-item">
                         <a class="menu-link" href="{{ route('roles.index') }}">
                         <span class="menu-label">قائمة الصلاحيات</span>
+                        </a>
+                    </li>
+                </ul>
+              </li>
+              @endpermission
+              @permission('View Permissions')
+              <li class="menu-item menu-arrow">
+                <a class="menu-link" href="javascript:void(0);">
+                  <span class="menu-label">إدارة الأذونات</span>
+                </a>
+                <ul class="menu-inner">
+                    @permission('Create Permissions')
+                    <li class="menu-item">
+                        <a class="menu-link" href="{{ route('permissions.create') }}">
+                        <span class="menu-label">إضافة أذن</span>
+                        </a>
+                    </li>
+                    @endpermission
+                    <li class="menu-item">
+                        <a class="menu-link" href="{{ route('permissions.index') }}">
+                        <span class="menu-label">قائمة الأذونات</span>
                         </a>
                     </li>
                 </ul>

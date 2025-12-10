@@ -9,13 +9,17 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Support\Facades\Config;
 use App\Models\Organization;
 use App\Models\Role;
+use Laratrust\Contracts\LaratrustUser;
+use Laratrust\Traits\HasRolesAndPermissions;
 
-class User extends Authenticatable
+class User extends Authenticatable implements LaratrustUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasRolesAndPermissions;
 
     /**
      * The attributes that are mass assignable.
@@ -56,13 +60,25 @@ class User extends Authenticatable
     }
 
     /**
-     * Roles assigned to the user (via role_user pivot).
+     * Override Laratrust's roles relationship to include organization_id in pivot.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
-    public function roles(): BelongsToMany
+    public function roles(): MorphToMany
     {
-        return $this->belongsToMany(Role::class, 'role_user')
-            ->withPivot('organization_id')
-            ->withTimestamps();
+        $roles = $this->morphToMany(
+            Config::get('laratrust.models.role'),
+            'user',
+            Config::get('laratrust.tables.role_user'),
+            Config::get('laratrust.foreign_keys.user'),
+            Config::get('laratrust.foreign_keys.role')
+        )->withPivot('organization_id')->withTimestamps();
+
+        if (Config::get('laratrust.teams.enabled')) {
+            $roles->withPivot(Config::get('laratrust.foreign_keys.team'));
+        }
+
+        return $roles;
     }
 
     /**
