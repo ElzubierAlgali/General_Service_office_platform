@@ -27,6 +27,10 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Creating roles and permissions...');
         $this->call(RolePermissionSeeder::class);
 
+        // Assign all permissions to superadmin user
+        $this->command->info('Assigning all permissions to superadmin...');
+        \Database\Seeders\SuperAdminSeeder::assignAllPermissionsToSuperAdmin();
+
         // Users
         $this->command->info('Creating users...');
         $this->call(UserSeeder::class);

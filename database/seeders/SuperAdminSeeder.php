@@ -17,7 +17,7 @@ class SuperAdminSeeder extends Seeder
     {
         // Create a global superadmin permission and role. organization_id = null => global
         $perm = Permission::firstOrCreate(
-            ['name' => 'superadmin'],
+            ['name' => 'superadmin', 'organization_id' => null],
             ['display_name' => 'Super Administrator', 'description' => 'Global super admin permission']
         );
 
@@ -50,6 +50,28 @@ class SuperAdminSeeder extends Seeder
                 'organization_id' => null,
                 'user_type' => get_class($user),
             ]);
+        }
+    }
+
+    /**
+     * Assign all permissions to the superadmin user.
+     * This should be called after RolePermissionSeeder has run.
+     */
+    public static function assignAllPermissionsToSuperAdmin(): void
+    {
+        $email = config('app.superadmin_email', 'admin@example.com');
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            return;
+        }
+
+        // Get all permissions from all organizations (including global)
+        $allPermissions = Permission::all();
+
+        if ($allPermissions->isNotEmpty()) {
+            // Sync all permissions to the user
+            $user->permissions()->syncWithoutDetaching($allPermissions->pluck('id')->toArray());
         }
     }
 }
