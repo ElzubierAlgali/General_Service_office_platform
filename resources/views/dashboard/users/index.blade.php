@@ -1,9 +1,14 @@
 @extends('layouts.master')
 @section('title', 'إدارة المستخدمين')
 @section('content')
-<div class="app-page-head d-flex flex-wrap gap-3 align-items-center justify-content-between">
+
+{{-- Page Header --}}
+<div class="app-page-head d-flex flex-wrap gap-3 align-items-center justify-content-between animate-fadeInDown">
     <div class="clearfix">
-        <h1 class="app-page-title">إدارة المستخدمين</h1>
+        <h1 class="app-page-title">
+            <i class="fas fa-users-cog text-primary"></i>
+            إدارة المستخدمين
+        </h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">لوحة التحكم</a></li>
@@ -11,144 +16,223 @@
             </ol>
         </nav>
     </div>
-    <div>
+    <div class="d-flex gap-2">
         @permission('create-users')
         <a href="{{ route('users.create') }}" class="btn btn-primary">
-            <i class="fas fa-plus"></i> إضافة مستخدم
+            <i class="fas fa-user-plus me-1"></i> إضافة مستخدم
         </a>
         @endpermission
     </div>
 </div>
 
-@if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-@endif
-
-@if(session('error'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <i class="fas fa-exclamation-circle me-2"></i>{{ session('error') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-@endif
-
-<!-- Stats Card -->
+{{-- Stats Cards --}}
 <div class="row mb-4">
-    <div class="col-md-4">
-        <div class="card bg-primary text-white">
-            <div class="card-body text-center">
-                <h3 class="mb-0">{{ $users->count() }}</h3>
-                <small>إجمالي المستخدمين</small>
+    <div class="col-sm-6 col-lg-3 animate-fadeInUp stagger-1">
+        <div class="stats-card stats-card-primary">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="stats-number">{{ $users->count() }}</div>
+                    <div class="stats-label">إجمالي المستخدمين</div>
+                </div>
+                <div class="stats-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+            <div class="stats-change positive">
+                <i class="fas fa-chart-line"></i>
+                <span>+{{ $users->where('created_at', '>=', now()->subMonth())->count() }} هذا الشهر</span>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card bg-success text-white">
-            <div class="card-body text-center">
-                <h3 class="mb-0">{{ $users->whereNotNull('email_verified_at')->count() }}</h3>
-                <small>مستخدمون مفعّلون</small>
+    <div class="col-sm-6 col-lg-3 animate-fadeInUp stagger-2">
+        <div class="stats-card stats-card-success">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="stats-number">{{ $users->whereNotNull('email_verified_at')->count() }}</div>
+                    <div class="stats-label">حسابات مفعّلة</div>
+                </div>
+                <div class="stats-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card bg-info text-white">
-            <div class="card-body text-center">
-                <h3 class="mb-0">{{ $users->whereNotNull('organization_id')->count() }}</h3>
-                <small>مستخدمون مرتبطون بمنظمة</small>
+    <div class="col-sm-6 col-lg-3 animate-fadeInUp stagger-3">
+        <div class="stats-card stats-card-warning">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="stats-number">{{ $users->whereNull('email_verified_at')->count() }}</div>
+                    <div class="stats-label">في انتظار التفعيل</div>
+                </div>
+                <div class="stats-icon">
+                    <i class="fas fa-user-clock"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3 animate-fadeInUp stagger-4">
+        <div class="stats-card stats-card-info">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="stats-number">{{ $users->whereNotNull('organization_id')->count() }}</div>
+                    <div class="stats-label">مرتبطون بمنظمة</div>
+                </div>
+                <div class="stats-icon">
+                    <i class="fas fa-building"></i>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Users Table -->
-<div class="card">
-    <div class="card-header">
-        <h5 class="card-title mb-0">قائمة المستخدمين</h5>
+{{-- Users Table Card --}}
+<div class="card animate-fadeInUp">
+    <div class="card-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+        <h5 class="card-title mb-0">
+            <i class="fas fa-list me-2 text-primary"></i>
+            قائمة المستخدمين
+        </h5>
+        <div class="d-flex gap-2">
+            <div class="search-input-wrapper" style="min-width: 250px;">
+                <input type="text" id="searchInput" class="form-control" placeholder="بحث سريع...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </div>
     </div>
-    <div class="card-body">
+    <div class="card-body p-0">
         <div class="table-responsive">
-            <table class="table table-hover" id="usersTable">
-                <thead class="table-dark">
+            <table class="table table-hover mb-0" id="usersTable">
+                <thead>
                     <tr>
-                        <th>#</th>
-                        <th>الاسم</th>
+                        <th class="text-center" style="width: 60px;">#</th>
+                        <th>المستخدم</th>
                         <th>البريد الإلكتروني</th>
                         <th>المنظمة</th>
                         <th>الصلاحيات</th>
-                        <th>الحالة</th>
-                        <th>تاريخ الإنشاء</th>
-                        <th>العمليات</th>
+                        <th class="text-center">الحالة</th>
+                        <th class="text-center">تاريخ الانضمام</th>
+                        <th class="text-center" style="width: 150px;">الإجراءات</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($users as $index => $user)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
+                    <tr class="animate-fadeIn" style="animation-delay: {{ ($index % 10) * 0.05 }}s">
+                        <td class="text-center fw-semibold text-muted">
+                            {{ $index + 1 }}
+                        </td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <div class="avatar avatar-sm rounded-circle me-2 bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <div class="avatar avatar-md me-3" 
+                                     style="background: linear-gradient(135deg, #{{ substr(md5($user->email), 0, 6) }} 0%, #{{ substr(md5($user->email), 6, 6) }} 100%);">
                                     {{ strtoupper(substr($user->name, 0, 2)) }}
                                 </div>
                                 <div>
-                                    <strong>{{ $user->name }}</strong>
-                                    @if($user->id === auth()->id())
-                                        <span class="badge bg-info ms-1">أنت</span>
-                                    @endif
+                                    <h6 class="mb-0 fw-bold">
+                                        {{ $user->name }}
+                                        @if($user->id === auth()->id())
+                                            <span class="badge badge-soft-primary ms-1">
+                                                <i class="fas fa-user me-1"></i>أنت
+                                            </span>
+                                        @endif
+                                    </h6>
+                                    <small class="text-muted">
+                                        @if($user->position)
+                                            <i class="fas fa-briefcase me-1"></i>{{ $user->position }}
+                                        @else
+                                            <i class="fas fa-clock me-1"></i>
+                                            انضم {{ $user->created_at->diffForHumans() }}
+                                        @endif
+                                    </small>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
-                            @if($user->email_verified_at)
-                                <i class="fas fa-check-circle text-success" title="مفعّل"></i>
-                            @else
-                                <i class="fas fa-times-circle text-warning" title="غير مفعّل"></i>
-                            @endif
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="mailto:{{ $user->email }}" class="text-decoration-none">
+                                    {{ $user->email }}
+                                </a>
+                                @if($user->email_verified_at)
+                                    <span class="text-success" data-bs-toggle="tooltip" title="بريد مُفعّل">
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
+                                @else
+                                    <span class="text-warning" data-bs-toggle="tooltip" title="بريد غير مُفعّل">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </span>
+                                @endif
+                            </div>
                         </td>
                         <td>
                             @if($user->organization)
-                                <span class="badge bg-secondary">{{ $user->organization->name }}</span>
-                            @else
-                                <span class="text-muted">-</span>
-                            @endif
-                        </td>
-                        <td>
-                            @forelse($user->roles as $role)
-                                <span class="badge bg-primary me-1">
-                                    {{ $role->display_name ?? $role->name }}
+                                <span class="badge badge-soft-secondary">
+                                    <i class="fas fa-building me-1"></i>
+                                    {{ $user->organization->name }}
                                 </span>
-                            @empty
-                                <span class="text-muted">لا توجد صلاحيات</span>
-                            @endforelse
-                        </td>
-                        <td>
-                            @if($user->email_verified_at)
-                                <span class="badge bg-success">مفعّل</span>
                             @else
-                                <span class="badge bg-warning">غير مفعّل</span>
+                                <span class="text-muted small">
+                                    <i class="fas fa-minus-circle me-1"></i>غير مرتبط
+                                </span>
                             @endif
                         </td>
-                        <td>{{ $user->created_at->format('Y-m-d') }}</td>
                         <td>
-                            <div class="d-flex gap-2">
+                            <div class="d-flex flex-wrap gap-1">
+                                @forelse($user->roles as $role)
+                                    <span class="badge badge-soft-primary">
+                                        <i class="fas fa-shield-alt me-1"></i>
+                                        {{ $role->display_name ?? $role->name }}
+                                    </span>
+                                @empty
+                                    <span class="text-muted small">
+                                        <i class="fas fa-minus-circle me-1"></i>لا توجد
+                                    </span>
+                                @endforelse
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            @if($user->email_verified_at)
+                                <span class="badge badge-soft-success status-badge active">
+                                    <i class="fas fa-check me-1"></i>مفعّل
+                                </span>
+                            @else
+                                <span class="badge badge-soft-warning status-badge pending">
+                                    <i class="fas fa-clock me-1"></i>غير مفعّل
+                                </span>
+                            @endif
+                        </td>
+                        <td class="text-center">
+                            <span class="small text-muted" data-bs-toggle="tooltip" title="{{ $user->created_at->format('Y-m-d H:i') }}">
+                                {{ $user->created_at->format('Y-m-d') }}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="action-btns justify-content-center">
                                 @permission('view-users')
-                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-info" title="عرض">
+                                <a href="{{ route('users.show', $user->id) }}" 
+                                   class="btn btn-soft-info btn-icon btn-sm"
+                                   data-bs-toggle="tooltip" 
+                                   title="عرض التفاصيل">
                                     <i class="fas fa-eye"></i>
                                 </a>
                                 @endpermission
                                 @permission('edit-users')
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-primary" title="تعديل">
+                                <a href="{{ route('users.edit', $user->id) }}" 
+                                   class="btn btn-soft-primary btn-icon btn-sm"
+                                   data-bs-toggle="tooltip" 
+                                   title="تعديل">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 @endpermission
                                 @permission('delete-users')
                                 @if($user->id !== auth()->id())
-                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline" onsubmit="return confirm('هل أنت متأكد من حذف هذا المستخدم؟');">
+                                <form action="{{ route('users.destroy', $user->id) }}" 
+                                      method="POST" 
+                                      class="d-inline delete-form">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="حذف">
+                                    <button type="submit" 
+                                            class="btn btn-soft-danger btn-icon btn-sm"
+                                            data-bs-toggle="tooltip" 
+                                            title="حذف">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
@@ -159,9 +243,19 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="8" class="text-center text-muted py-4">
-                            <i class="fas fa-inbox fa-2x mb-2 d-block"></i>
-                            لا توجد مستخدمين
+                        <td colspan="8">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h5 class="empty-state-title">لا يوجد مستخدمين</h5>
+                                <p class="empty-state-text">لم يتم إضافة أي مستخدمين بعد.</p>
+                                @permission('create-users')
+                                <a href="{{ route('users.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-user-plus me-1"></i> إضافة مستخدم جديد
+                                </a>
+                                @endpermission
+                            </div>
                         </td>
                     </tr>
                     @endforelse
@@ -170,18 +264,55 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('scripts')
 <script>
     $(document).ready(function() {
-        $('#usersTable').DataTable({
+        // Initialize DataTable
+        var table = $('#usersTable').DataTable({
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/ar.json'
             },
-            order: [[0, 'desc']],
+            order: [[0, 'asc']],
             pageLength: 25,
-            responsive: true
+            responsive: true,
+            dom: '<"top">rt<"bottom"lip><"clear">',
+            initComplete: function() {
+                // Custom search functionality
+                $('#searchInput').on('keyup', function() {
+                    table.search(this.value).draw();
+                });
+            }
+        });
+        
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+        
+        // Delete confirmation with SweetAlert
+        $('.delete-form').on('submit', function(e) {
+            e.preventDefault();
+            var form = this;
+            
+            Swal.fire({
+                title: 'هل أنت متأكد؟',
+                text: 'سيتم حذف هذا المستخدم نهائياً!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#e74c3c',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: '<i class="fas fa-trash me-1"></i> نعم، احذف',
+                cancelButtonText: '<i class="fas fa-times me-1"></i> إلغاء',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
         });
     });
 </script>

@@ -1,0 +1,285 @@
+resources/views/auth/login.blade.php:6: trailing whitespace.
+[32m+[m[41m    [m
+resources/views/auth/login.blade.php:13: trailing whitespace.
+[32m+[m[41m    [m
+resources/views/auth/login.blade.php:16: trailing whitespace.
+[32m+[m[41m    [m
+resources/views/auth/login.blade.php:20: trailing whitespace.
+[32m+[m[41m    [m
+resources/views/auth/login.blade.php:25: trailing whitespace.
+[32m+[m[41m    [m
+resources/views/auth/login.blade.php:34: trailing whitespace.
+[32m+[m[41m    [m
+resources/views/auth/login.blade.php:39: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:48: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:53: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:62: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:70: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:81: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:86: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:94: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:102: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:109: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:116: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:125: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:136: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:146: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:152: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:160: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:168: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:176: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:183: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:193: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:200: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:206: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:211: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:216: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:221: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:228: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:233: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:237: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:244: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:253: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:258: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:266: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:271: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:275: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:282: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:290: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:294: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:310: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:316: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:320: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:327: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:332: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:337: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:341: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:348: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:353: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:368: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:371: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:373: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:374: trailing whitespace.
+[32m+[m[32m        .preloader-logo {[m[41m [m
+resources/views/auth/login.blade.php:375: trailing whitespace.
+[32m+[m[32m            margin-bottom: 2rem;[m[41m [m
+resources/views/auth/login.blade.php:376: trailing whitespace.
+[32m+[m[32m            animation: pulse 2s ease-in-out infinite;[m[41m [m
+resources/views/auth/login.blade.php:378: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:379: trailing whitespace.
+[32m+[m[32m        .preloader-logo img {[m[41m [m
+resources/views/auth/login.blade.php:380: trailing whitespace.
+[32m+[m[32m            max-width: 180px;[m[41m [m
+resources/views/auth/login.blade.php:384: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:385: trailing whitespace.
+[32m+[m[32m        .preloader-spinner {[m[41m [m
+resources/views/auth/login.blade.php:386: trailing whitespace.
+[32m+[m[32m            display: flex;[m[41m [m
+resources/views/auth/login.blade.php:387: trailing whitespace.
+[32m+[m[32m            justify-content: center;[m[41m [m
+resources/views/auth/login.blade.php:388: trailing whitespace.
+[32m+[m[32m            margin-bottom: 1.5rem;[m[41m [m
+resources/views/auth/login.blade.php:390: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:391: trailing whitespace.
+[32m+[m[32m        .spinner-ring {[m[41m [m
+resources/views/auth/login.blade.php:392: trailing whitespace.
+[32m+[m[32m            width: 50px;[m[41m [m
+resources/views/auth/login.blade.php:393: trailing whitespace.
+[32m+[m[32m            height: 50px;[m[41m [m
+resources/views/auth/login.blade.php:394: trailing whitespace.
+[32m+[m[32m            border: 4px solid rgba(255, 255, 255, 0.1);[m[41m [m
+resources/views/auth/login.blade.php:395: trailing whitespace.
+[32m+[m[32m            border-top-color: #f39c12;[m[41m [m
+resources/views/auth/login.blade.php:396: trailing whitespace.
+[32m+[m[32m            border-radius: 50%;[m[41m [m
+resources/views/auth/login.blade.php:397: trailing whitespace.
+[32m+[m[32m            animation: spin 0.8s linear infinite;[m[41m [m
+resources/views/auth/login.blade.php:399: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:400: trailing whitespace.
+[32m+[m[32m        .preloader-text {[m[41m [m
+resources/views/auth/login.blade.php:401: trailing whitespace.
+[32m+[m[32m            color: rgba(255, 255, 255, 0.8);[m[41m [m
+resources/views/auth/login.blade.php:406: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:407: trailing whitespace.
+[32m+[m[32m        @keyframes spin {[m[41m [m
+resources/views/auth/login.blade.php:408: trailing whitespace.
+[32m+[m[32m            0% { transform: rotate(0deg); }[m[41m [m
+resources/views/auth/login.blade.php:409: trailing whitespace.
+[32m+[m[32m            100% { transform: rotate(360deg); }[m[41m [m
+resources/views/auth/login.blade.php:411: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:416: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:437: trailing whitespace.
+[32m+[m[41m    [m
+resources/views/auth/login.blade.php:469: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:476: trailing whitespace.
+[32m+[m[41m                [m
+resources/views/auth/login.blade.php:481: trailing whitespace.
+[32m+[m[41m                [m
+resources/views/auth/login.blade.php:487: trailing whitespace.
+[32m+[m[41m                [m
+resources/views/auth/login.blade.php:496: trailing whitespace.
+[32m+[m[41m                [m
+resources/views/auth/login.blade.php:499: trailing whitespace.
+[32m+[m[41m                    [m
+resources/views/auth/login.blade.php:503: trailing whitespace.
+[32m+[m[32m                            <input type="email"[m[41m [m
+resources/views/auth/login.blade.php:504: trailing whitespace.
+[32m+[m[32m                                   name="email"[m[41m [m
+resources/views/auth/login.blade.php:505: trailing whitespace.
+[32m+[m[32m                                   id="email"[m[41m [m
+resources/views/auth/login.blade.php:506: trailing whitespace.
+[32m+[m[32m                                   class="form-control @error('email') is-invalid @enderror"[m[41m [m
+resources/views/auth/login.blade.php:507: trailing whitespace.
+[32m+[m[32m                                   value="{{ old('email') }}"[m[41m [m
+resources/views/auth/login.blade.php:509: trailing whitespace.
+[32m+[m[32m                                   required[m[41m [m
+resources/views/auth/login.blade.php:521: trailing whitespace.
+[32m+[m[41m                    [m
+resources/views/auth/login.blade.php:525: trailing whitespace.
+[32m+[m[32m                            <input type="password"[m[41m [m
+resources/views/auth/login.blade.php:526: trailing whitespace.
+[32m+[m[32m                                   name="password"[m[41m [m
+resources/views/auth/login.blade.php:527: trailing whitespace.
+[32m+[m[32m                                   id="password"[m[41m [m
+resources/views/auth/login.blade.php:528: trailing whitespace.
+[32m+[m[32m                                   class="form-control @error('password') is-invalid @enderror"[m[41m [m
+resources/views/auth/login.blade.php:541: trailing whitespace.
+[32m+[m[41m                    [m
+resources/views/auth/login.blade.php:544: trailing whitespace.
+[32m+[m[32m                            <input class="form-check-input"[m[41m [m
+resources/views/auth/login.blade.php:545: trailing whitespace.
+[32m+[m[32m                                   type="checkbox"[m[41m [m
+resources/views/auth/login.blade.php:546: trailing whitespace.
+[32m+[m[32m                                   name="remember"[m[41m [m
+resources/views/auth/login.blade.php:547: trailing whitespace.
+[32m+[m[32m                                   id="remember"[m[41m [m
+resources/views/auth/login.blade.php:559: trailing whitespace.
+[32m+[m[41m                    [m
+resources/views/auth/login.blade.php:565: trailing whitespace.
+[32m+[m[41m                [m
+resources/views/auth/login.blade.php:572: trailing whitespace.
+[32m+[m[41m    [m
+resources/views/auth/login.blade.php:577: trailing whitespace.
+[32m+[m[41m    [m
+resources/views/auth/login.blade.php:584: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:593: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:600: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/auth/login.blade.php:608: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/dashboard/customers/create.blade.php:31: trailing whitespace.
+[32m+[m[41m            [m
+resources/views/dashboard/customers/create.blade.php:69: trailing whitespace.
+[32m+[m[32m                                <input type="text"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:70: trailing whitespace.
+[32m+[m[32m                                       name="name"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:71: trailing whitespace.
+[32m+[m[32m                                       class="form-control @error('name') is-invalid @enderror"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:72: trailing whitespace.
+[32m+[m[32m                                       value="{{ old('name') }}"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:90: trailing whitespace.
+[32m+[m[32m                                <input type="text"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:91: trailing whitespace.
+[32m+[m[32m                                       name="national_id"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:92: trailing whitespace.
+[32m+[m[32m                                       class="form-control @error('national_id') is-invalid @enderror"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:124: trailing whitespace.
+[32m+[m[32m                                <input type="email"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:125: trailing whitespace.
+[32m+[m[32m                                       name="email"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:126: trailing whitespace.
+[32m+[m[32m                                       class="form-control @error('email') is-invalid @enderror"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:144: trailing whitespace.
+[32m+[m[32m                                <input type="text"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:145: trailing whitespace.
+[32m+[m[32m                                       name="phone"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:146: trailing whitespace.
+[32m+[m[32m                                       class="form-control @error('phone') is-invalid @enderror"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:178: trailing whitespace.
+[32m+[m[32m                                <textarea name="address"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:179: trailing whitespace.
+[32m+[m[32m                                          class="form-control @error('address') is-invalid @enderror"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:191: trailing whitespace.
+[32m+[m[32m                            <input type="text"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:192: trailing whitespace.
+[32m+[m[32m                                   name="city"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:193: trailing whitespace.
+[32m+[m[32m                                   class="form-control"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:199: trailing whitespace.
+[32m+[m[32m                            <input type="text"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:200: trailing whitespace.
+[32m+[m[32m                                   name="state"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:201: trailing whitespace.
+[32m+[m[32m                                   class="form-control"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:207: trailing whitespace.
+[32m+[m[32m                            <input type="text"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:208: trailing whitespace.
+[32m+[m[32m                                   name="postal_code"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:209: trailing whitespace.
+[32m+[m[32m                                   class="form-control"[m[41m [m
+resources/views/dashboard/customers/create.blade.php:269: trailing whitespace.
+[32m+[m[41m        [m
+resources/views/dashboard/customers/index.blade.php:95: trailing whitespace.
+[32m+[m[32m                        <input type="text" name="search" class="form-control form-control-lg"[m[41m [m
+resources/views/dashboard/customers/index.blade.php:96: trailing whitespace.
+[32m+[m[32m                               value="{{ request('search') }}"[m[41m [m
+resources/views/dashboard/customers/index.blade.php:149: trailing whitespace.
